@@ -3,36 +3,7 @@ import { Button, Container } from "@/components/ui";
 
 import styles from "./page.module.css";
 import Link from "next/link";
-
-const categories = [
-  {
-    id: 1,
-    title: "Polos",
-    slug: "polos",
-    img_src: "/images/polos.jpg",
-    alt: "Hombre luciendo polo azul",
-    description:
-      "Polos exclusivos con diseños que todo desarrollador querrá lucir. Ideales para llevar el código a donde vayas.",
-  },
-  {
-    id: 2,
-    title: "Tazas",
-    slug: "tazas",
-    img_src: "/images/tazas.jpg",
-    alt: "Tazas con diseño de código",
-    description:
-      "Tazas que combinan perfectamente con tu café matutino y tu pasión por la programación. ¡Empieza el día con estilo!",
-  },
-  {
-    id: 3,
-    title: "Stickers",
-    slug: "stickers",
-    img_src: "/images/stickers.jpg",
-    alt: "Stickers de desarrollo web",
-    description:
-      "Personaliza tu espacio de trabajo con nuestros stickers únicos y muestra tu amor por el desarrollo web.",
-  },
-];
+import { fetchCategories } from "@/lib/data";
 
 const features = [
   {
@@ -61,7 +32,9 @@ const features = [
   },
 ];
 
-export default function Page() {
+export default async function Page() {
+  const categories = await fetchCategories();
+
   return (
     <>
       <section className={styles.hero}>
