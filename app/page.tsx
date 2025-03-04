@@ -4,7 +4,7 @@ import { Button, Container } from "@/components/ui";
 import styles from "./page.module.css";
 import Link from "next/link";
 
-export const categories = [
+const categories = [
   {
     id: 1,
     title: "Polos",
