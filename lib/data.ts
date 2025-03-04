@@ -46,7 +46,9 @@ export async function fetchCategoryBySlug(
 
 // Fetch products by category slug
 export async function fetchProductsByCategorySlug(
-  slug: string
+  slug: string,
+  minPrice: number = 0,
+  maxPrice: number = 999999
 ): Promise<Product[]> {
   try {
     const start = Date.now();
@@ -55,7 +57,7 @@ export async function fetchProductsByCategorySlug(
       SELECT p.*
       FROM products AS p
       LEFT JOIN categories AS c ON p.category_id = c.id
-      WHERE c.slug = ${slug}
+      WHERE c.slug = ${slug} AND p.price BETWEEN ${minPrice} AND ${maxPrice}
     `;
 
     const end = Date.now();

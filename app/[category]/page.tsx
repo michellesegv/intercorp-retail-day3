@@ -8,10 +8,14 @@ import { fetchCategoryBySlug, fetchProductsByCategorySlug } from "@/lib/data";
 
 export default async function Page({
   params,
+  searchParams,
 }: {
   params: { category: string };
+  searchParams: { minPrice?: string; maxPrice?: string };
 }) {
   const { category: categorySlug } = params;
+  const minPrice = searchParams.minPrice ? +searchParams.minPrice : undefined;
+  const maxPrice = searchParams.maxPrice ? +searchParams.maxPrice : undefined;
 
   const category = await fetchCategoryBySlug(categorySlug);
 
@@ -19,7 +23,11 @@ export default async function Page({
     notFound();
   }
 
-  const products = await fetchProductsByCategorySlug(categorySlug);
+  const products = await fetchProductsByCategorySlug(
+    categorySlug,
+    minPrice,
+    maxPrice
+  );
 
   const hasProducts = products.length > 0;
 
