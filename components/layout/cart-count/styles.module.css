@@ -1,0 +1,18 @@
+.cart-count__cart {
+  position: relative;
+}
+
+.cart-count__cart-badge {
+  position: absolute;
+  bottom: calc(var(--space-1) * -1);
+  right: calc(var(--space-1) * -1);
+  background-color: var(--primary-background);
+  color: var(--primary-foreground);
+  font-size: var(--font-size-3);
+  border-radius: var(--rounded-full);
+  height: var(--space-5);
+  width: var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

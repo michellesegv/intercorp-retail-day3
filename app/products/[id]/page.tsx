@@ -1,7 +1,9 @@
-import { Button, Container, Separator } from "@/components/ui";
+import { Container, Separator } from "@/components/ui";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { fetchProductById } from "@/lib/data";
+import { addItemToCart } from "@/lib/actions";
+import { SubmitButton } from "@/components/ui/submit-button";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const productId = Number(params.id);
@@ -26,11 +28,11 @@ export default async function Page({ params }: { params: { id: string } }) {
             <h1 className={styles.product__title}>{product.title}</h1>
             <p className={styles.product__price}>${product.price}</p>
             <p className={styles.product__description}>{product.description}</p>
-            <form>
+            <form action={addItemToCart}>
               <input hidden name="product_id" value={product.id} readOnly />
-              <Button size="xl" className={styles.product__button}>
+              <SubmitButton size="xl" className={styles.product__button}>
                 Agregar al Carrito
-              </Button>
+              </SubmitButton>
             </form>
             <Separator className={styles.product__separator} />
             <div className={styles.product__features}>

@@ -1,17 +1,16 @@
-import { ShoppingCart, User2 } from "lucide-react";
+import { User2 } from "lucide-react";
 
 import { Button, Separator } from "@/components/ui";
 
 import styles from "./styles.module.css";
 import Link from "next/link";
+import CartCount from "../cart-count";
 
 export default function HeaderActions() {
   const user = {
     name: "Juanito",
     email: "juanito@mail.com",
   };
-
-  const totalItems = "#";
 
   return (
     <div className={styles["header-actions"]}>
@@ -32,22 +31,7 @@ export default function HeaderActions() {
           />
         </>
       )}
-      <Button
-        size="xl-icon"
-        variant="ghost"
-        aria-label="Carrito de compras"
-        asChild
-        className={styles["header-actions__cart"]}
-      >
-        <Link href="/cart">
-          <ShoppingCart />
-          {totalItems && (
-            <span className={styles["header-actions__cart-badge"]}>
-              {totalItems}
-            </span>
-          )}
-        </Link>
-      </Button>
+      <CartCount />
     </div>
   );
 }
