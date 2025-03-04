@@ -9,7 +9,7 @@ const categories = [
     id: 1,
     title: "Polos",
     slug: "polos",
-    imgSrc: "/images/polos.jpg",
+    img_src: "/images/polos.jpg",
     alt: "Hombre luciendo polo azul",
     description:
       "Polos exclusivos con diseños que todo desarrollador querrá lucir. Ideales para llevar el código a donde vayas.",
@@ -18,7 +18,7 @@ const categories = [
     id: 2,
     title: "Tazas",
     slug: "tazas",
-    imgSrc: "/images/tazas.jpg",
+    img_src: "/images/tazas.jpg",
     alt: "Tazas con diseño de código",
     description:
       "Tazas que combinan perfectamente con tu café matutino y tu pasión por la programación. ¡Empieza el día con estilo!",
@@ -27,7 +27,7 @@ const categories = [
     id: 3,
     title: "Stickers",
     slug: "stickers",
-    imgSrc: "/images/stickers.jpg",
+    img_src: "/images/stickers.jpg",
     alt: "Stickers de desarrollo web",
     description:
       "Personaliza tu espacio de trabajo con nuestros stickers únicos y muestra tu amor por el desarrollo web.",
@@ -99,7 +99,7 @@ export default function Page() {
               >
                 <div className={styles.category__image}>
                   <img
-                    src={category.imgSrc}
+                    src={category.img_src}
                     alt={category.alt || `${category.title}`}
                   />
                 </div>

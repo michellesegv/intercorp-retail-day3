@@ -10,12 +10,8 @@ export default function HeaderActions() {
     name: "Juanito",
     email: "juanito@mail.com",
   };
-  const cart = {
-    items: [{ quantity: 2 }],
-  };
 
-  const totalItems =
-    cart?.items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
+  const totalItems = "#";
 
   return (
     <div className={styles["header-actions"]}>
@@ -45,7 +41,7 @@ export default function HeaderActions() {
       >
         <Link href="/cart">
           <ShoppingCart />
-          {totalItems > 0 && (
+          {totalItems && (
             <span className={styles["header-actions__cart-badge"]}>
               {totalItems}
             </span>
