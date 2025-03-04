@@ -6,9 +6,9 @@ import styles from "./styles.module.css";
 import Link from "next/link";
 
 const navigation = [
-  { to: "polos", label: "Polos" },
-  { to: "tazas", label: "Tazas" },
-  { to: "stickers", label: "Stickers" },
+  { to: "/polos", label: "Polos" },
+  { to: "/tazas", label: "Tazas" },
+  { to: "/stickers", label: "Stickers" },
 ];
 
 export default function HeaderMain() {

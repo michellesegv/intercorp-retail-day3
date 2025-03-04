@@ -1,26 +1,54 @@
 import { notFound } from "next/navigation";
+import styles from "./page.module.css";
+import { Container } from "@/components/ui";
+import { PriceFilter } from "@/components/category/price-filter";
+import { ProductCard } from "@/components/category/product-card";
+import { Empty } from "@/components/ui";
+import { fetchCategoryBySlug, fetchProductsByCategorySlug } from "@/lib/data";
 
-const VALID_CATEGORIES = ["polos", "tazas", "stickers"];
+export default async function Page({
+  params,
+}: {
+  params: { category: string };
+}) {
+  const { category: categorySlug } = params;
 
-export default function Page({ params }: { params: { category: string } }) {
-  if (!VALID_CATEGORIES.includes(params.category)) {
+  const category = await fetchCategoryBySlug(categorySlug);
+
+  if (!category) {
     notFound();
   }
 
+  const products = await fetchProductsByCategorySlug(categorySlug);
+
+  const hasProducts = products.length > 0;
+
   return (
-    <div>
-      <h1>Category: {params.category}</h1>
-      <ul>
-        <li>
-          <a href="/products/1">Product 1</a>
-        </li>
-        <li>
-          <a href="/products/2">Product 2</a>
-        </li>
-        <li>
-          <a href="/products/3">Product 3</a>
-        </li>
-      </ul>
-    </div>
+    <>
+      <section className={styles.header}>
+        <Container>
+          <div className={styles.header__content}>
+            <h1 className={styles.header__title}>{category.title}</h1>
+            <p className={styles.header__description}>{category.description}</p>
+          </div>
+        </Container>
+      </section>
+      <section className={styles.products}>
+        <Container>
+          <div className={styles.products__layout}>
+            <PriceFilter className={styles["products__price-filter"]} />
+            {hasProducts ? (
+              <div className={styles.products__grid}>
+                {products.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            ) : (
+              <Empty message="No products found. Try adjusting your filters." />
+            )}
+          </div>
+        </Container>
+      </section>
+    </>
   );
 }
